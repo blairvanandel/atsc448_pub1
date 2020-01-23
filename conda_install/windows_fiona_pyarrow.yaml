@@ -1,0 +1,54 @@
+name: a448
+channels:
+  - conda-forge
+  - defaults
+  - msys2
+dependencies:
+  - affine
+  - arrow-cpp
+  - attrs
+  - backcall
+  - bleach
+  - bokeh
+  - cartopy
+  - fiona
+  - git
+  - jupyter
+  - jupyter_client
+  - jupyter_console
+  - jupyter_core
+  - libgdal
+  - libnetcdf
+  - libtiff
+  - nbconvert
+  - notebook
+  - packaging
+  - pandas
+  - parquet-cpp
+  - pillow
+  - psutil
+  - pyarrow
+  - pyhdf
+  - pyresample
+  - pyqt
+  - qt
+  - qtconsole
+  - rasterio
+  - request
+  - ruamel_yaml
+  - scikit-image
+  - setuptools
+  - shapely
+  - sip
+  - six
+  - snappy
+  - sqlite
+  - tornado
+  - traitlets
+  - libkml
+  - numba
+  - numpy
+  - scipy
+  - m2-bash
+  - m2-tar
+prefix: C:\Users\paust\mini37b\envs\fiona

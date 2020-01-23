@@ -1,0 +1,19 @@
+;; This buffer is for text that is not saved, and for Lisp evaluation.
+;; To create a file, visit it with C-x C-f and enter text in its buffer.
+
+Geometry files that need data downloaded for
+
+
+MYD03.A2016361.1915.061
+MYD03.A2016362.1955.061
+MYD03.A2015007.1955.061
+MYD03.A2015001.2035.061
+MYD03.A2015003.2020.061
+MYD03.A2017001.2015.061
+MYD03.A2016364.1945.061
+MYD03.A2015005.2010.061
+MYD03.A2015002.1940.061
+MYD03.A2016363.2040.061
+MYD03.A2015006.1915.061
+MYD03.A2016365.2025.061
+

@@ -1,0 +1,150 @@
+\documentclass[12pt]{article}
+\linespread{2}
+\usepackage{cite}
+
+\begin{document}
+
+@misc{MODIS Aerosol Algorithm,
+       author = "L. A. Remer",
+       title = "The MODIS Aerosol Algorithm, Products, and Validation",
+       year = "2005" }
+             
+@misc{Analysis of the Aerosol,
+       author = "Gin-RongLiu",
+       title = "Analysis of the Aerosol Optical Depth and the Air Quality in Qingdao, China",
+       year = "2011" }
+      
+@misc{Comparing Modis,
+       author = "Bengang Li",
+       title = "Comparing MODIS and AERONET aerosol optical depth over China",
+       year = "2009" }
+
+@misc{Evaluation of,
+       author = "Wen Mi",
+       title = "Evaluation of the Moderate Resolution Imaging Spectroradiometer aerosol products at two Aerosol Robotic Network stations in China",
+       year = "2007" }
+
+@misc{On-orbit,
+       author = "B Guenther",
+       title = "On-orbit performance of the Earth Observing System Moderate Resolution Imaging Spectroradiometer; first year of data",
+       year = "2002" }
+       
+       
+  @online{aeronet dat,
+  	author = {MultiMedia LLCGodard Space Flight Centre},
+ 	 title = {Aerosol Optical Depth Robotic Network},
+  	year = 2019,
+  	url = {https://aeronet.gsfc.nasa.gov/new_web/data.html},
+ 	urldate = {2019-03-30}
+	
+@online{aeronet helper,
+  	author = {Robin's Blog},
+ 	 title = {Reading AERONET data in Pandas: a simple helper function},
+  	year = 2019,
+  	url = {http://blog.rtwilson.com/reading-aeronet-data-in-pandas-a-simple-helper-function/l},
+ 	urldate = {2019-02-30}
+	
+@online{laads,
+  	author = {NASA Earth Data},
+ 	 title = {LAADS DAAC},
+  	year = 2019,
+  	url = {https://ladsweb.modaps.eosdis.nasa.gov/},
+ 	urldate = {2019-02-30}
+
+@online{master cheif,
+  	author = Phil Austin,
+ 	 title = {ATSC 301 Notebooks ,
+  	year = 2019,
+  	url = {https://clouds.eos.ubc.ca/~phil/courses/atsc301/coursebuild/notebook_index.html},
+ 	urldate = {2019-02-30}
+	
+@online{modis webinar,
+ 	author = Leigh Munchak,
+ 	title = {MODIS Atmosphere Team Webinar Series #5:
+	Overview of the 3 km aerosol product in Collection 6 ,
+ 	year = 2019,
+ 	url = {https://modis-atmos.gsfc.nasa.gov/sites/default/files/ModAtmo/MODIS_Atmos_Webinar-2_Munchak_3kmaerosol.pdf},
+ 	urldate = {2019-04-30}
+	
+
+~\cite{MODIS Aerosol Algorithm}
+
+\title{ATSC 448 Final Write Up}
+\author{Blair Van Andel}
+\date{Today}
+\maketitle
+
+
+
+\section{Intro / Background info}
+
+The purpose of this directed study is to become more familiar and confident manipulating and analyzing data using python while gaining a better understanding of remote sensing and Aerosol optical depth data which can help determine air quality and is a necessary parameter for accurate climate modelling. Aerosol Optical Depth (AOD) is important for a few reasons. First is that aerosols can directly effect human health and it is a major factor in climate modelling because depending on the aerosol shape and size it can contribute to either warming of cooling by forcing the earths radiation balance. AOD also analogous to Aerosol optical thickness (AOT) is a way of measuring aerosols such as smoke, water droplets, dust and haze particles in a column of air. Although it has been found that  correlation between air quality and optical depth varies seasonally, researches have proved the capability of MODIS AOD to monitor the air quality ~\cite{Analysis of the Aerosol}. For this project I would like to look specifically how AOD measured from the Moderate Resolution Imaging Spectroradiometer (MODIS) aboard the specific Satellite Aqua compares to ground made measurements of AOD. Unlike measurements made from satellites the ground measurements in this study are measured from a CIMEL Electronique CE318 multi band sun photometer that is part of the Aerosol Robotic Network (AERONET) established by NASA and expanded by other international agencies. Sun photometers measure intensity of direct incoming solar radiation and can determine the amount of absorption and scattering of aerosols in the atmosphere by which aerosol optical depth is calculated. There are already previous studies that have made this comparison and  have published their results Comparing MODIS and AERONET but as a learning exercise I would like to try and replicate my own at a much smaller scale by using python, a versatile programming language as and analysis tool.
+OPTICAL depth at certain wavelengths can help determine aerosol size 
+
+
+
+
+
+ Moderate Resolution Imaging Spectroradiometer  (MODIS) (Aqua sat)
+
+*Colection 6 is a joint product that automatically slects wither Dark target or deep blue algorithm for better data
+* Cloud cover from MODIS And near IR channels (https://modis.gsfc.nasa.gov/data/dataprod/mod06.php) -Indication of cloud shadowing on a scene is also provided Cloud fraction provided by IR channels
+*Only retrievals with QC > 0 contribute to the level 3 quality weighted products.
+* The MODIS size parameters over land are not expected to be as accurate as the parameters over ocean ~\cite{MODIS Aerosol Algorithm}
+
+
+*Colection 6 is a joint product that automatically slects wither Dark target or deep blue algorithm for better data
+
+
+
+\section{Methods}
+
+The first step for this study was to collect data and the first source collected from was AERONET  ~\cite{aeronet dat}. All data from all sites was download and the files are saved as .lel20 file extensions. The files themselves where similar to a csv file with a different extension name but where all readable into python using the panadas package that is commonly used for csv files. The lev20 extension refers to level 2 data, which is data that is cleaned for errors and validated through a quality control algorithm before posted for public download. The python script itself (.py) file was sourced from Robin's Blog ~\cite{aeronet helper} and only need minor modifications to work for this project. The location of the measurement site was arbitrarily picked based on a location situated in North America, near and urban centre, had a long historical recording record and showed large variations in OAD. The site picked was Table Mountain in Colorado situated at (40.125N, 105.237W). Potential aerosol events could maybe be air pollution from Denver CO, forest fire smoke or maybe even dust blown up off the earth surface. After sorting through the long timeline of the dataset and narrowing a window to use of a date of August 22, 2015 was chosen because of the linear sharp increase of AOD across all measured wavelengths over the course of the day show in INSERTED FIGURE. There are plenty of wavelengths provided with the AERONET data but since  0.55 \micro\metre is used to compare to MODIS data because it can be slightly more accurate  ~\cite{Comparing Modis} the three nearest wavelengths to 0.55 \micro\metre where scatter plotted and will need to be interpolated for a direct comparison to the MODIS values.
+
+
+Once more than enough sufficient data sourced from ground based instruments was collected the next step was to gather satellite collected data. The MODIS instrument deployed by NASA aboard the Aqua and Tera Satellites measure aerosol optical depth at a wide spectrum of wavelengths. MODIS  data was downloaded using LAADS DAAC a product NASA's Earth Data program ~\cite{laads}. The first step taken to download MODIS data was to select a collection. Since there are two satellites that contain the MODIS sensor the Collection aboard Aqua was arbitrarily picked over Terra. Next The product of aerosol 5-min L2 Swath 3 km was selected and is denoted by MYD04_3K.  The 3km over the 10km pixel size was chosen in hopes that the higher resolution would help capture and more accurate measurement that was directly over the ground station but have yet to come across any info is this is indeed correct. However it should be noted that  the 3 km resolution shows slight high bias and	a bit	more	uncertainty. ~\cite{modis webinar} The date range of  2015-232 - 2015-235 was chosen in hopes that there would be a satellite reading over the region for the high AOD event observed by AERONET. A Satellite pass by Aqua with date stamp  2015-234 20:30 came up as a time that was retrieved by MODIS and showed good data retreival from the AERONET sensory on the ground. Before the actual search was initiated a location was required to be entered as two lat, lon paired points that formed a box that swath fell into. To create this box for data selection a point a few hundred metres to the North East and to the South West where selected on google maps satellite images and used the lon lat pairs provided. With only one Satellite pass presented for the given search criteria the Geometry, AOD and cloud fraction files where downloaded in the given form of .hdf format. First It was important to check and see if the station location near the centre of the swath because the further from the swath centre a pixel is the more distorted it becomes due to the curvature of the earth. For the single used date it this project is unfortunate that the station location is near the lower souther edge of the swath and is likely distorted. The code transferred to a python script named plot_geom that plots the geometry and the rest of the code in the rest of the data analysis is heavily based on notebooks created for use with ATSC301 ~\cite{master cheif}. Next was to plot a map of the AOD using the Corrected Optical Depth Land from the MYD04 hdf file. The Corrected Optical depth data is quality controlled and cloud screened already by NASA's post precessing algorithms however even though MODIS has cloud screening it is still a possible source of error ~\cite{Comparing Modis}. The Cloud screening process uses MODIS infra-red channels to create cloud fractions that are later used to mask the AOD data with clouded regions and is also supplied with certainty data concerning the estimated accuracy of the cloud screening. 
+
+Getting the Station location on the plotted imaged proved to be more difficult than it should have been but by using the Affine transformation provided in the rasterio python package it seemed to work out and plotted a point on top of MODIS measured pixels. To confirm that there is a pixel value at the ground station location the reverse Affine transformation for the point was performed then used to index the location in the MODIS AOD data. Since a non masked value of 0.352 was produced it should be a valid measurement and potential not masked by clouds. 
+
+The final plot was produced by plotting a narrow time series of the AERONET data and adding the MODIS point measurement at the time of the satellite pass. The exact MODIS pass time was in between two ground based measurement but by linearly Interpolating points before and after the Aqua pass the MODIS values falls on the line. The MODIS meta file does contain the error in passing retrievals but I was unable to extract in time of writing this report. A rough error bar of 0.05 error was sourced from ~\cite{MODIS Aerosol Algorithm} was plotted but in reality the error could be larger or smaller. 
+
+
+* Note that the algorithm does not retrieve aerosol directly at 0.55 \micro\metre over land because there is no established relationship between that channel and the surface reflectance at 2.13 \micro\metre  ~\cite{MODIS Aerosol Algorithm}
+* However, 0.55 \micro\metre is an important wavelength often used in global climate modelling and analysis, and therefore MODIS reports a value for that wavelength even though there is no direct retrieval. ~\cite{MODIS Aerosol Algorithm}
+
+
+
+
+\section{Data / Results }
+
+Insert Figures and describe them
+
+
+\section{Conclusion}
+
+
+
+Optical depth data is sparse and is better averaged over long periods of time from climate studies.
+* Correlation between air quality and optical depth varies seasonally  ~\cite{Analysis of the Aerosol}
+* more accurate over land than over ocean ~\cite{Analysis of the Aerosol}
+* The usefulness of better OOP 
+
+
+What I learned and could improve on 
+*better understanding of Latex and Jupyter notebooks
+*confidence working with github
+*Using path objects in python
+* should have chosen a location in the tropical high region that is more likely to be cloud free and maybe have dust?
+*make plots and analyze at different wavelengths such as 0.55 instead of just at 0.675
+*use error bars provided by MODIS swath and not arbitrary ones from a paper 
+ 
+ 
+ 
+ To conclude any results from this paper would be very unwise. Only one data point was produced and its true uncertainty wasn't determined. However the one data point correlated between two measurement sources appears accurate and promising. Not only more data points are required but it would be wise to interpolate the data further and compare measurements from both sources at 0.55 \micro\metre. In future work to narrow the certainty of the data it would be wise track the provided errors with the AERONET and MODIS data.
+
+
+
+
+\bibliography{mybib}{}
+\bibliographystyle{plain}
+\end{document}
